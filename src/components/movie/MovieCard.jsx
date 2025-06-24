@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useWatchlist } from "../../contexts/WatchlistContext"
 import { getImageUrl, formatDate, formatRating } from "../../utils/helpers"
 import Button from "../common/Button"
+import TrailerButton from "../common/TrailerButton"
 
 const MovieCard = ({ movie, showWatchlistButton = true }) => {
   const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist()
@@ -59,14 +60,25 @@ const MovieCard = ({ movie, showWatchlistButton = true }) => {
         {movie.overview && <p className="text-gray-700 text-sm mb-4 line-clamp-3">{movie.overview}</p>}
 
         {showWatchlistButton && (
-          <Button
-            onClick={handleWatchlistToggle}
-            variant={inWatchlist ? "danger" : "primary"}
-            size="small"
-            className="w-full"
-          >
-            {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
-          </Button>
+          <div className="space-y-2">
+            <Button
+              onClick={handleWatchlistToggle}
+              variant={inWatchlist ? "danger" : "primary"}
+              size="small"
+              className="w-full"
+            >
+              {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+            </Button>
+
+            <TrailerButton
+              title={movie.title}
+              year={movie.release_date ? new Date(movie.release_date).getFullYear() : null}
+              type="movie"
+              variant="outline"
+              size="small"
+              className="w-full"
+            />
+          </div>
         )}
       </div>
     </div>
