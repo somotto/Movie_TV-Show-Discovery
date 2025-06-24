@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useWatchlist } from "../../contexts/WatchlistContext"
 import { getImageUrl, formatDate, formatRating } from "../../utils/helpers"
 import Button from "../common/Button"
+import TrailerButton from "../common/TrailerButton"
 
 const TVDetails = ({ show, omdbData }) => {
   const { addToWatchlist, removeFromWatchlist, isInWatchlist, updateWatchlistItem } = useWatchlist()
@@ -81,6 +82,14 @@ const TVDetails = ({ show, omdbData }) => {
                   {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
                 </Button>
 
+                <TrailerButton
+                  title={show.name}
+                  year={show.first_air_date ? new Date(show.first_air_date).getFullYear() : null}
+                  type="tv"
+                  variant="secondary"
+                  className="w-full"
+                />
+
                 {inWatchlist && (
                   <>
                     <div>
@@ -103,11 +112,10 @@ const TVDetails = ({ show, omdbData }) => {
                           <button
                             key={rating}
                             onClick={() => handleRatingChange(rating)}
-                            className={`w-8 h-8 rounded-full text-sm font-medium transition-colors ${
-                              rating <= userRating
+                            className={`w-8 h-8 rounded-full text-sm font-medium transition-colors ${rating <= userRating
                                 ? "bg-yellow-400 text-yellow-900"
                                 : "bg-gray-200 text-gray-600 hover:bg-gray-300"
-                            }`}
+                              }`}
                           >
                             {rating}
                           </button>
