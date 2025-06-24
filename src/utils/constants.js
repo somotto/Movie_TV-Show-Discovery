@@ -69,3 +69,17 @@ export const GENRES = {
     37: "Western",
   },
 }
+
+export const validateApiKeys = () => {
+  const errors = []
+
+  if (!API_CONFIG.TMDB.API_KEY || API_CONFIG.TMDB.API_KEY === "your_tmdb_api_key_here") {
+    errors.push("NEXT_PUBLIC_TMDB_API_KEY is missing or invalid")
+  }
+
+  if (!API_CONFIG.OMDB.API_KEY || API_CONFIG.OMDB.API_KEY === "your_omdb_api_key_here") {
+    errors.push("NEXT_PUBLIC_OMDB_API_KEY is missing or invalid")
+  }
+
+  return errors
+}
