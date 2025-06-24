@@ -11,6 +11,10 @@ export const API_CONFIG = {
     BASE_URL: process.env.NEXT_PUBLIC_OMDB_BASE_URL || "https://www.omdbapi.com",
     API_KEY: process.env.NEXT_PUBLIC_OMDB_API_KEY || "f82b2738",
   },
+  YOUTUBE: {
+    BASE_URL: "https://www.googleapis.com/youtube/v3",
+    API_KEY: process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || "AIzaSyCWVKiYjUkedR-ZoXWl4J_7QTLKaxZw5nM",
+  },
 }
 
 export const IMAGE_SIZES = {
@@ -79,6 +83,10 @@ export const validateApiKeys = () => {
 
   if (!API_CONFIG.OMDB.API_KEY || API_CONFIG.OMDB.API_KEY === "your_omdb_api_key_here") {
     errors.push("NEXT_PUBLIC_OMDB_API_KEY is missing or invalid")
+  }
+
+  if (!API_CONFIG.YOUTUBE.API_KEY || API_CONFIG.YOUTUBE.API_KEY === "your_youtube_api_key_here") {
+    errors.push("NEXT_PUBLIC_YOUTUBE_API_KEY is missing or invalid")
   }
 
   return errors
