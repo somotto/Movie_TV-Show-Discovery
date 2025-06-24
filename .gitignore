@@ -9,16 +9,11 @@
 /out/
 
 
-# misc
-.DS_Store
-*.pem
-
+package-lock.json
 
 # local env files
 .env*.local
 
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo
